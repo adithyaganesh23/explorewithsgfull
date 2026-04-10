@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
+<link rel="icon" type="image/x-icon" href="../public/favicon.ico">
 <link rel="apple-touch-icon" href="../public/apple-touch-icon.svg">
-<link rel="shortcut icon" href="../public/favicon.svg">
+<link rel="shortcut icon" href="../public/favicon.ico">
 <title>Admin — SG Leisure &amp; Taxis</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
@@ -370,7 +370,7 @@
 <nav class="sidebar">
   <div class="sidebar-logo">
     <div style="display:flex;flex-direction:column;gap:6px">
-      <img src="../public/logo-light.svg" alt="SG Leisure and Taxis" style="height:36px;width:auto;display:block">
+      <img src="../public/logo.png" alt="SG Leisure and Taxis" style="height:36px;width:auto;display:block;background:#fff;border-radius:8px;padding:4px 10px">
       <div style="font-size:9px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--text3)">Admin panel</div>
     </div>
   </div>
@@ -695,6 +695,20 @@
           <option value="false">No</option><option value="true">Yes — show at top</option>
         </select>
       </div>
+      <div class="form-group form-full">
+        <label class="form-label">Package image</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input class="form-input" id="f-pimage" type="text" placeholder="Paste image URL, or upload →" oninput="previewPkgImage(this.value)" style="flex:1">
+          <label style="cursor:pointer;flex-shrink:0" class="btn btn-ghost">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 4l3-3 3 3M1 10v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Upload
+            <input type="file" id="f-pimage-file" accept="image/*" style="display:none" onchange="handlePkgImageUpload(this)">
+          </label>
+        </div>
+        <div id="f-pimage-preview-wrap" style="display:none;margin-top:8px;border-radius:8px;overflow:hidden;height:140px;background:var(--surface2)">
+          <img id="f-pimage-preview" src="" alt="Preview" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('pkg-modal')">Cancel</button>
@@ -1000,9 +1014,11 @@ function renderPkgSection(type) {
 
   const card=(p,isDraft)=>`
     <div class="pkg-card"${isDraft?' style="opacity:.6"':''}>
-      <div class="pkg-thumb">
-        <span style="font-size:28px">${emoj[p.type]||'📦'}</span>
-        <span class="pkg-thumb-label ${p.is_featured?'featured':p.is_live?'live':'draft'}">${p.is_featured?'Featured':p.is_live?'Live':'Draft'}</span>
+      <div class="pkg-thumb" style="position:relative">
+        ${p.image_url
+          ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block">`
+          : `<span style="font-size:28px">${emoj[p.type]||'📦'}</span>`}
+        <span class="pkg-thumb-label ${p.is_featured?'featured':p.is_live?'live':'draft'}" style="position:absolute;top:8px;left:8px">${p.is_featured?'Featured':p.is_live?'Live':'Draft'}</span>
       </div>
       <div class="pkg-body">
         <div class="pkg-name">${p.name}</div>
@@ -1148,6 +1164,34 @@ async function delDrv(id) {
 }
 
 // ── CRUD: PACKAGES ──
+function previewPkgImage(url) {
+  const wrap = document.getElementById('f-pimage-preview-wrap');
+  const img  = document.getElementById('f-pimage-preview');
+  if (url) { img.src = url; wrap.style.display = 'block'; }
+  else { wrap.style.display = 'none'; img.src = ''; }
+}
+
+async function handlePkgImageUpload(input) {
+  if (!input.files[0]) return;
+  const file = input.files[0];
+  const ext  = file.name.split('.').pop().toLowerCase();
+  const name = 'pkg-' + Date.now() + '.' + ext;
+  toast('Uploading image…');
+  try {
+    const r = await fetch(SB_URL + '/storage/v1/object/package-images/' + name, {
+      method: 'POST',
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': file.type, 'x-upsert': 'true' },
+      body: file
+    });
+    if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || r.statusText); }
+    const url = SB_URL + '/storage/v1/object/public/package-images/' + name;
+    document.getElementById('f-pimage').value = url;
+    previewPkgImage(url);
+    toast('Image uploaded');
+  } catch(e) { toast('Upload failed: ' + e.message, false); }
+  input.value = '';
+}
+
 function openPkgModal(id, defaultType='travel') {
   editPkgId = id || null;
   document.getElementById('pkg-modal-title').textContent = id ? 'Edit package' : 'Add package';
@@ -1162,17 +1206,21 @@ function openPkgModal(id, defaultType='travel') {
     document.getElementById('f-ptags').value     = (p.tags||[]).join(', ');
     document.getElementById('f-plive').value     = String(p.is_live);
     document.getElementById('f-pfeatured').value = String(p.is_featured);
+    previewPkgImage(p.image_url||'');
+    document.getElementById('f-pimage').value    = p.image_url||'';
   } else {
-    ['f-pname','f-pprice','f-pduration','f-ppax','f-pdesc','f-ptags'].forEach(id=>document.getElementById(id).value='');
+    ['f-pname','f-pprice','f-pduration','f-ppax','f-pdesc','f-ptags','f-pimage'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('f-ptype').value=defaultType;
     document.getElementById('f-plive').value='false';
     document.getElementById('f-pfeatured').value='false';
+    previewPkgImage('');
   }
   openModal('pkg-modal');
 }
 
 async function savePackage() {
   const tags = document.getElementById('f-ptags').value;
+  const imageUrl = document.getElementById('f-pimage').value.trim();
   const p = {
     name:        document.getElementById('f-pname').value.trim(),
     type:        document.getElementById('f-ptype').value,
@@ -1183,6 +1231,7 @@ async function savePackage() {
     tags:        tags ? tags.split(',').map(t=>t.trim()).filter(Boolean) : [],
     is_live:     document.getElementById('f-plive').value==='true',
     is_featured: document.getElementById('f-pfeatured').value==='true',
+    image_url:   imageUrl || null,
   };
   if (!p.name||!p.price) { toast('Name and price are required', false); return; }
   try { editPkgId ? await dbUpdate('packages',editPkgId,p) : await dbInsert('packages',p); }

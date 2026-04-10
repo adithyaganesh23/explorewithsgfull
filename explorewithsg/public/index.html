@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
-<link rel="shortcut icon" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.ico">
 <title>Explore with SG — South India Travel & Corporate Taxis</title>
 <meta name="description" content="Premium group travel packages across South India and reliable corporate taxi services. Trusted by families and businesses for over a decade.">
 <link rel="stylesheet" href="style.css">
@@ -202,7 +202,7 @@
   <div class="container">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <img src="logo.svg" alt="SG Leisure and Taxis" style="height:44px;width:auto;display:block">
+        <img src="logo.png" alt="SG Leisure and Taxis" style="height:44px;width:auto;display:block">
       </a>
       <ul class="nav-links">
         <li><a href="#packages">Packages</a></li>
@@ -217,7 +217,12 @@
           <span style="display:block;width:22px;height:2px;background:var(--ink);border-radius:2px"></span>
           <span style="display:block;width:22px;height:2px;background:var(--ink);border-radius:2px"></span>
         </button>
-<!-- MOBILE NAV DRAWER -->
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV DRAWER — must be outside <nav> to avoid backdrop-filter stacking context -->
 <div id="nav-drawer" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(26,18,8,0.55);backdrop-filter:blur(4px)" onclick="closeDrawer(event)">
   <div style="position:absolute;top:0;right:0;bottom:0;width:280px;background:var(--cream);padding:28px 24px;display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(10,22,40,0.13)">
     <button onclick="closeDrawer()" style="align-self:flex-end;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink2);padding:4px 8px;margin-bottom:16px">✕</button>
@@ -227,9 +232,7 @@
     <a href="#contact" onclick="closeDrawer()" style="font-size:1.1rem;font-weight:500;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);display:block">Contact</a>
     <a href="book.html" style="margin-top:24px" class="btn btn-primary">Book now</a>
   </div>
-    </div>
-  </div>
-</nav>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -251,7 +254,7 @@
             <svg viewBox="0 0 20 20" fill="none"><path d="M4 17L10 5L16 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             Plan my trip
           </a>
-          <a href="https://wa.me/919840000000?text=Hi,%20I%20want%20to%20enquire%20about%20a%20trip" class="btn btn-ghost btn-lg" target="_blank">
+          <a href="https://wa.me/919845072124?text=Hi,%20I%20want%20to%20enquire%20about%20a%20trip" class="btn btn-ghost btn-lg" target="_blank">
             <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.465 2 2 6.465 2 11.99c0 1.77.459 3.42 1.256 4.858L2 22l5.292-1.235A9.95 9.95 0 0011.99 22C17.515 22 22 17.535 22 12.01 22 6.465 17.515 2 11.99 2z" stroke="#25D366" stroke-width="0" fill="#25D366"/></svg>
             WhatsApp us
           </a>
@@ -399,7 +402,7 @@
 <section class="section" style="background:var(--cream2)">
   <div class="container">
     <span class="section-label">What people say</span>
-    <h2>Trusted by families across Chennai</h2>
+    <h2>Trusted by families across Bangalore</h2>
     <div class="testi-grid">
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
@@ -414,7 +417,7 @@
         <p class="testi-text">"We've been using SG for our office cab for 3 years now. Never a single late pickup. The driver knows the city routes perfectly and is always professional."</p>
         <div class="testi-author">
           <div class="testi-avatar">SP</div>
-          <div><div class="testi-name">Sunitha Pillai</div><div class="testi-role">Corporate client, Chennai</div></div>
+          <div><div class="testi-name">Sunitha Pillai</div><div class="testi-role">Corporate client, Bangalore</div></div>
         </div>
       </div>
       <div class="testi-card">
@@ -439,7 +442,7 @@
         <svg viewBox="0 0 20 20" fill="none"><path d="M4 17L10 5L16 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Book a trip
       </a>
-      <a href="https://wa.me/919840000000?text=Hi,%20I%20would%20like%20to%20enquire%20about%20a%20trip" class="btn btn-wa btn-lg" target="_blank">
+      <a href="https://wa.me/919845072124?text=Hi,%20I%20would%20like%20to%20enquire%20about%20a%20trip" class="btn btn-wa btn-lg" target="_blank">
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.99 2C6.465 2 2 6.465 2 11.99c0 1.77.459 3.42 1.256 4.858L2 22l5.292-1.235A9.95 9.95 0 0011.99 22C17.515 22 22 17.535 22 12.01 22 6.465 17.515 2 11.99 2z"/></svg>
         WhatsApp us
       </a>
@@ -452,8 +455,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="logo-light.svg" alt="SG Leisure and Taxis" style="height:38px;width:auto;display:block">
-        <p>South India's trusted travel partner for group trips and corporate taxis. Based in Chennai, serving families and businesses since 2012.</p>
+        <img src="logo.png" alt="SG Leisure and Taxis" style="height:38px;width:auto;display:block;background:#fff;border-radius:8px;padding:4px 10px">
+        <p>South India's trusted travel partner for group trips and corporate taxis. Based in Bangalore, serving families and businesses since 2012.</p>
       </div>
       <div>
         <h4>Quick links</h4>
@@ -467,8 +470,8 @@
       <div>
         <h4>Contact</h4>
         <ul>
-          <li><a href="tel:+919840000000">+91 98400 00000</a></li>
-          <li><a href="https://wa.me/919840000000" target="_blank">WhatsApp</a></li>
+          <li><a href="tel:+919845072124">+91 98450 72124</a></li>
+          <li><a href="https://wa.me/919845072124" target="_blank">WhatsApp</a></li>
           <li><a href="mailto:hello@explorewithsg.com">hello@explorewithsg.com</a></li>
           <li><a href="admin/index.html">Admin login</a></li>
         </ul>
@@ -482,7 +485,7 @@
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/919840000000?text=Hi,%20I%20want%20to%20enquire%20about%20a%20trip" class="wa-float" target="_blank" title="Chat on WhatsApp">
+<a href="https://wa.me/919845072124?text=Hi,%20I%20want%20to%20enquire%20about%20a%20trip" class="wa-float" target="_blank" title="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.99 2C6.465 2 2 6.465 2 11.99c0 1.77.459 3.42 1.256 4.858L2 22l5.292-1.235A9.95 9.95 0 0011.99 22C17.515 22 22 17.535 22 12.01 22 6.465 17.515 2 11.99 2z"/></svg>
 </a>
 
@@ -537,7 +540,9 @@
     el.innerHTML = pkgs.map(p => `
       <div class="pkg-card">
         <div class="pkg-thumb">
-          <span>${getEmoji(p.name)}</span>
+          ${p.image_url
+            ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block">`
+            : `<span>${getEmoji(p.name)}</span>`}
           ${p.is_featured ? '<span class="pkg-thumb-featured">Most popular</span>' : ''}
         </div>
         <div class="pkg-body">

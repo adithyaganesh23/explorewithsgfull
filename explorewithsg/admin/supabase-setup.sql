@@ -35,6 +35,7 @@ create table if not exists packages (
   tags        text,
   is_live     boolean not null default false,
   is_featured boolean not null default false,
+  image_url   text,
   created_at  timestamptz default now()
 );
 
@@ -68,6 +69,24 @@ create policy "anon full access packages"  on packages   for all using (true) wi
 create policy "anon full access enquiries" on enquiries  for all using (true) with check (true);
 
 
+-- ── STORAGE BUCKET FOR PACKAGE IMAGES ───────────────────────
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+  values ('package-images', 'package-images', true, 5242880, ARRAY['image/jpeg','image/png','image/webp','image/gif'])
+  on conflict (id) do nothing;
+
+create policy "Public read package images"
+  on storage.objects for select using (bucket_id = 'package-images');
+create policy "Anon upload package images"
+  on storage.objects for insert with check (bucket_id = 'package-images');
+create policy "Anon update package images"
+  on storage.objects for update using (bucket_id = 'package-images');
+create policy "Anon delete package images"
+  on storage.objects for delete using (bucket_id = 'package-images');
+
+-- Migration (run this if the table already exists without image_url):
+-- alter table packages add column if not exists image_url text;
+
+
 -- ── SEED DATA — sample drivers ───────────────────────────────
 insert into drivers (name, phone, whatsapp, vehicle_model, reg_number, seats, vehicle_type, availability) values
   ('Suresh Kumar',   '+91 98401 11111', '+91 98401 11111', 'Toyota Innova Crysta', 'TN 09 AB 1234', 7,  'SUV',   'on_trip'),
@@ -80,15 +99,15 @@ insert into drivers (name, phone, whatsapp, vehicle_model, reg_number, seats, ve
 
 
 -- ── SEED DATA — sample packages ──────────────────────────────
-insert into packages (name, type, price, duration, max_pax, description, tags, is_live, is_featured) values
-  ('Ooty 3-day getaway',    'travel',    '₹4,500 / person', '3 days · 2 nights', 8,  'Scenic hill station trip with hotel stays and sightseeing.', 'Hill station,Meals incl.,Group', true,  true),
-  ('Pondicherry day trip',  'travel',    '₹1,800 / person', '1 day',             6,  'French quarter, beaches and ashram visit.',                  'Beach,Day trip',                true,  false),
-  ('Kodaikanal 2-day',      'travel',    '₹3,200 / person', '2 days · 1 night',  12, 'Misty lakes, forest walks and local cuisine.',               'Hill station,Meals incl.',      true,  false),
-  ('Mysore heritage tour',  'travel',    '₹2,900 / person', '2 days · 1 night',  10, 'Palace, zoo, Chamundi Hills and silk market.',               'Heritage,Group',                true,  false),
-  ('Mahabalipuram day',     'travel',    '₹1,500 / person', '1 day',             6,  'Shore temples, mahabalipuram carvings and beach.',           'Temple,Beach',                  false, false),
-  ('Daily office commute',  'corporate', '₹12,000 / month', 'Monthly contract',  4,  'Fixed route daily pickup and drop for office staff.',        'Fixed route,Monthly',           true,  true),
-  ('Airport transfer plan', 'corporate', '₹2,200 / trip',   'Per trip',          6,  'Reliable airport pickups and drops, 24/7.',                  'Airport,On-demand',             true,  false),
-  ('Team outing plan',      'corporate', '₹6,500 / trip',   'Per trip',          14, 'Large group transport for corporate outings.',               'Group',                         false, false);
+insert into packages (name, type, price, duration, max_pax, description, tags, is_live, is_featured, image_url) values
+  ('Ooty 3-day getaway',    'travel',    '₹4,500 / person', '3 days · 2 nights', 8,  'Scenic hill station trip with hotel stays and sightseeing.', 'Hill station,Meals incl.,Group', true,  true,  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'),
+  ('Pondicherry day trip',  'travel',    '₹1,800 / person', '1 day',             6,  'French quarter, beaches and ashram visit.',                  'Beach,Day trip',                true,  false, 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80'),
+  ('Kodaikanal 2-day',      'travel',    '₹3,200 / person', '2 days · 1 night',  12, 'Misty lakes, forest walks and local cuisine.',               'Hill station,Meals incl.',      true,  false, 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'),
+  ('Mysore heritage tour',  'travel',    '₹2,900 / person', '2 days · 1 night',  10, 'Palace, zoo, Chamundi Hills and silk market.',               'Heritage,Group',                true,  false, 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80'),
+  ('Mahabalipuram day',     'travel',    '₹1,500 / person', '1 day',             6,  'Shore temples, mahabalipuram carvings and beach.',           'Temple,Beach',                  false, false, 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=800&q=80'),
+  ('Daily office commute',  'corporate', '₹12,000 / month', 'Monthly contract',  4,  'Fixed route daily pickup and drop for office staff.',        'Fixed route,Monthly',           true,  true,  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80'),
+  ('Airport transfer plan', 'corporate', '₹2,200 / trip',   'Per trip',          6,  'Reliable airport pickups and drops, 24/7.',                  'Airport,On-demand',             true,  false, 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80'),
+  ('Team outing plan',      'corporate', '₹6,500 / trip',   'Per trip',          14, 'Large group transport for corporate outings.',               'Group',                         false, false, 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80');
 
 
 -- ── SEED DATA — sample enquiries ─────────────────────────────
