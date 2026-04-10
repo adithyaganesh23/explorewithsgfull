@@ -223,7 +223,7 @@
 <div class="login-wrap">
 
   <div class="brand">
-    <img src="../public/logo.png" alt="SG Leisure and Taxis" style="height:48px;width:auto;display:block;margin:0 auto 6px;background:#fff;border-radius:10px;padding:6px 14px">
+    <img src="logo.png" alt="SG Leisure and Taxis" style="height:48px;width:auto;display:block;margin:0 auto 6px;background:#fff;border-radius:10px;padding:6px 14px">
     <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);text-align:center">Admin portal</div>
   </div>
 
@@ -284,7 +284,7 @@
 <script>
   /* ── Theme ── */
   (function() {
-    if (localStorage.getItem('sg_theme') === 'light') document.body.classList.add('light');
+    if (localStorage.getItem('sg_theme') !== 'dark') document.body.classList.add('light');
   })();
   function toggleTheme() {
     document.body.classList.toggle('light');
