@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<title>Booking Received — Explore with SG</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .confirm-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 60px 24px; background: var(--cream); }
+  .confirm-card {
+    background: var(--white); border-radius: 24px; border: 1px solid var(--border);
+    box-shadow: 0 16px 64px rgba(10,22,40,0.09); padding: 52px 48px; max-width: 560px; width: 100%; text-align: center;
+  }
+  .check-circle {
+    width: 80px; height: 80px; background: rgba(12,58,110,0.10); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 2.4rem;
+  }
+  .confirm-card h1 { font-size: 2rem; margin-bottom: 12px; }
+  .confirm-card > p { font-size: 1.05rem; color: var(--ink2); margin-bottom: 36px; line-height: 1.75; }
+  .info-box { background: var(--cream2); border-radius: var(--r-lg); padding: 24px; text-align: left; margin-bottom: 28px; border: 1px solid var(--border); }
+  .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .info-row:last-child { border-bottom: none; }
+  .info-key { font-size: 0.88rem; color: var(--ink3); }
+  .info-val { font-size: 0.95rem; font-weight: 600; color: var(--ink); text-align: right; }
+  .what-next { background: var(--terra-dim); border-radius: var(--r-lg); padding: 24px; text-align: left; margin-bottom: 32px; border: 1px solid rgba(26,86,219,0.12); }
+  .what-next h3 { font-size: 1rem; color: var(--terracotta); margin-bottom: 12px; }
+  .what-next ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .what-next li { font-size: 0.92rem; color: var(--ink2); display: flex; align-items: flex-start; gap: 10px; }
+  .what-next li::before { content: '→'; color: var(--terracotta); font-weight: 700; flex-shrink: 0; }
+  .confirm-btns { display: flex; flex-direction: column; gap: 12px; }
+  @media (max-width: 480px) { .confirm-card { padding: 36px 24px; } }
+</style>
+</head>
+<body>
+
+<div class="confirm-page">
+  <div>
+    <!-- Logo -->
+    <div style="text-align:center;margin-bottom:32px">
+      <a href="index.html" style="display:inline-block;text-decoration:none"><img src="logo.svg" alt="SG Leisure and Taxis" style="height:44px;width:auto;display:block"></a>
+    </div>
+
+    <div class="confirm-card">
+      <div class="check-circle">✓</div>
+      <h1>Enquiry received!</h1>
+      <p id="confirm-intro">Thank you. We have received your booking request and will call or WhatsApp you to confirm within a few hours.</p>
+
+      <div class="info-box" id="info-box">
+        <div class="info-row"><span class="info-key">Name</span><span class="info-val" id="c-name">—</span></div>
+        <div class="info-row"><span class="info-key">Package</span><span class="info-val" id="c-pkg">—</span></div>
+        <div class="info-row"><span class="info-key">Status</span><span class="info-val" style="color:#1655A3">Received — pending confirmation</span></div>
+      </div>
+
+      <div class="what-next">
+        <h3>What happens next</h3>
+        <ul>
+          <li>We'll call or WhatsApp you within a few hours to confirm your booking</li>
+          <li>We'll assign an experienced driver and share their details with you</li>
+          <li>You'll receive the driver's name, vehicle, and contact number on WhatsApp</li>
+          <li>No payment needed now — we collect on the day of travel</li>
+        </ul>
+      </div>
+
+      <div class="confirm-btns">
+        <a id="wa-btn" href="https://wa.me/919840000000?text=Hi%2C%20I%20just%20submitted%20a%20booking%20enquiry" class="btn btn-primary btn-lg" target="_blank" style="justify-content:center">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.99 2C6.465 2 2 6.465 2 11.99c0 1.77.459 3.42 1.256 4.858L2 22l5.292-1.235A9.95 9.95 0 0011.99 22C17.515 22 22 17.535 22 12.01 22 6.465 17.515 2 11.99 2z"/></svg>
+          Message us on WhatsApp
+        </a>
+        <a href="index.html" class="btn btn-ghost btn-lg" style="justify-content:center">← Back to home</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const name = params.get('name') || '';
+  const pkg  = params.get('pkg')  || '';
+  const id   = params.get('id')   || '';
+
+  if (name) document.getElementById('c-name').textContent = name;
+  if (pkg)  document.getElementById('c-pkg').textContent  = pkg;
+
+  if (name) {
+    document.getElementById('confirm-intro').textContent =
+      `Thank you, ${name}. We have received your booking request and will call or WhatsApp you to confirm within a few hours.`;
+  }
+
+  // Pre-fill WhatsApp message with booking details
+  if (name || pkg) {
+    const msg = encodeURIComponent(`Hi, I just submitted a booking enquiry.\nName: ${name}\nPackage: ${pkg}\nPlease confirm my booking. Thank you.`);
+    document.getElementById('wa-btn').href = `https://wa.me/919840000000?text=${msg}`;
+  }
+</script>
+</body>
+</html>

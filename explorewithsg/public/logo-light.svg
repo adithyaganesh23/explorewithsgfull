@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 72" fill="none">
+
+  <!-- ═══ BIRD MARK ═══ -->
+  <g transform="translate(4, 4)">
+
+    <!-- LEFT WING — letter S -->
+    <!-- Upper curve of S: sweeps up-left from body -->
+    <path d="M30 30 C30 24, 26 17, 18 17 C11 17, 6 22, 8 27 C10 32, 18 31, 20 36 C22 41, 17 47, 10 47"
+          stroke="#7FAAFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- RIGHT WING — letter G -->
+    <!-- C arc sweeping up-right from body -->
+    <path d="M36 28 C38 20, 44 14, 52 14 C59 14, 64 19, 64 26 C64 33, 59 38, 52 38 C47 38, 43 35, 43 31"
+          stroke="#7FAAFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- G crossbar — short bar going inward from right -->
+    <path d="M64 28 L52 28"
+          stroke="#7FAAFF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- BODY — small filled oval linking the two wings -->
+    <ellipse cx="33" cy="30" rx="5" ry="3.5" fill="#7FAAFF"/>
+
+    <!-- HEAD — circle above body, slightly left -->
+    <circle cx="29" cy="24" r="4.5" fill="#7FAAFF"/>
+
+    <!-- EYE -->
+    <circle cx="28" cy="23" r="1.4" fill="white"/>
+
+    <!-- BEAK — pointing left-down -->
+    <path d="M26 25 L20 28" stroke="#7FAAFF" stroke-width="2.2" stroke-linecap="round"/>
+
+    <!-- TAIL — two feathers trailing down-left -->
+    <path d="M27 33 C22 37, 15 43, 10 50" stroke="#7FAAFF" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M26 34 C22 39, 18 47, 16 54" stroke="#7FAAFF" stroke-width="1.6" stroke-linecap="round" opacity="0.45"/>
+
+  </g>
+
+  <!-- ═══ WORDMARK ═══ -->
+  <!-- Vertical divider -->
+  <rect x="82" y="14" width="1.5" height="42" fill="#FFFFFF" opacity="0.13" rx="1"/>
+
+  <!-- SG in bold display serif -->
+  <text x="93" y="40"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="27" font-weight="700" fill="white" letter-spacing="-0.5">SG</text>
+
+  <!-- Thin divider dot -->
+  <circle cx="136" cy="40" r="2.5" fill="#7FAAFF" opacity="0.6"/>
+
+  <!-- Company name -->
+  <text x="145" y="34"
+    font-family="'Trebuchet MS', Arial, sans-serif"
+    font-size="13" font-weight="600" fill="white" letter-spacing="0.5">Leisure</text>
+  <text x="145" y="52"
+    font-family="'Trebuchet MS', Arial, sans-serif"
+    font-size="11" font-weight="500" fill="#7FAAFF" letter-spacing="2">&amp; TAXIS</text>
+
+</svg>
